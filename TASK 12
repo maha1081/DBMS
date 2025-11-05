@@ -1,0 +1,52 @@
+CREATE:
+db.collection_name.insertOne({key1: value1, key2: value2});
+db.collection_name.insertMany([{...}, {...}, {...}]);
+EXAMPLE:
+// Creating a collection called 'students' and inserting one document
+db.students.insertOne({
+    name: "Lakshmi",
+    age: 21,
+    course: "CSE (AIML)",
+    grade: "A"
+});
+
+// Inserting multiple documents
+db.students.insertMany([
+    {name: "Ravi", age: 22, course: "CSE", grade: "B"},
+    {name: "Priya", age: 20, course: "AIML", grade: "A"}
+]);
+RETRIVE:
+db.collection_name.find(query, projection);
+EXAMPLE:
+/ Display all students
+db.students.find();
+
+// Display students with grade "A"
+db.students.find({grade: "A"});
+
+// Display name and course only
+db.students.find({}, {name: 1, course: 1, _id: 0});
+UPDATE :
+db.collection_name.updateOne(filter, update);
+db.collection_name.updateMany(filter, update);
+EXAMPLE:
+// Update one student’s grade
+db.students.updateOne(
+    {name: "Ravi"},
+    {$set: {grade: "A+"}}
+);
+
+// Update multiple documents
+db.students.updateMany(
+    {course: "AIML"},
+    {$set: {grade: "A"}}
+);
+DELETE:
+db.collection_name.deleteOne(filter);
+db.collection_name.deleteMany(filter);
+EXAMPLE:
+// Delete one record
+db.students.deleteOne({name: "Priya"});
+
+// Delete all students with grade "B"
+db.students.deleteMany({grade: "B"});
